@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import {
   StyledListItem,
   StyledImage,
@@ -6,29 +6,24 @@ import {
 import Modal from '../Modal/Modal';
 import PropTypes from 'prop-types';
 
-class ImageGalleryItem extends Component {
-  state = {
-    isModalOpened: false,
-  };
+const ImageGalleryItem = ({ image: { tags, webformatURL, largeImageURL } }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  toggleModal = () => {
-    this.setState(({ isModalOpened }) => ({ isModalOpened: !isModalOpened }));
-  };
-
-  render() {
-    const { tags, webformatURL, largeImageURL } = this.props.image;
-    return (
-      <StyledListItem>
-        <StyledImage onClick={this.toggleModal} src={webformatURL} alt={tags} />
-        {this.state.isModalOpened && (
-          <Modal onClose={this.toggleModal}>
-            <img src={largeImageURL} alt={tags} />
-          </Modal>
-        )}
-      </StyledListItem>
-    );
-  }
-}
+  return (
+    <StyledListItem>
+      <StyledImage
+        onClick={() => setIsModalOpen(prev => !prev)}
+        src={webformatURL}
+        alt={tags}
+      />
+      {isModalOpen && (
+        <Modal onClose={() => setIsModalOpen(prev => !prev)}>
+          <img src={largeImageURL} alt={tags} />
+        </Modal>
+      )}
+    </StyledListItem>
+  );
+};
 
 export default ImageGalleryItem;
 

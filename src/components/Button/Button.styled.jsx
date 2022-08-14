@@ -45,6 +45,7 @@ export const BtnTop = styled.button`
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
   text-align: center;
   border: 0;
+  color: #fff;
   background-image: linear-gradient(
     to bottom,
     #b46aec,
