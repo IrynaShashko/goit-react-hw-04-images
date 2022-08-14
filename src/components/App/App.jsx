@@ -26,7 +26,6 @@ const App = () => {
     if (search === '') {
       return;
     }
-
     async function fetchImages() {
       try {
         setIsLoading(true);
@@ -77,7 +76,7 @@ const App = () => {
           <BiUpvote color="#fff" size="30px" />
         </BtnTop>
       )}
-      ){isLoading && <Loader />}
+      {isLoading && <Loader />}
     </AppContainer>
   );
 };

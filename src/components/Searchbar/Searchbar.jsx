@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import {
   SearchbarWrapper,
   SearchForm,
@@ -8,41 +8,37 @@ import {
 } from '../Searchbar/Searchbar.styled';
 import { BiSearch } from 'react-icons/bi';
 
-class Searchbar extends Component {
-  state = {
-    search: '',
-  };
+const Searchbar = ({ onSubmit }) => {
+  const [search, setSearch] = useState('');
 
-  handleInput = event => {
-    this.setState({ search: event.target.value });
+  const handleInput = event => {
+    setSearch(event.target.value);
   };
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    this.props.onSubmit(this.state.search);
-    this.setState({ search: '' });
+    onSubmit(search);
+    setSearch('');
   };
-  render() {
-    return (
-      <SearchbarWrapper>
-        <SearchForm onSubmit={this.handleSubmit}>
-          <FormBtn type="submit">
-            <Span>
-              <BiSearch size="20px" color="black" />
-            </Span>
-          </FormBtn>
+  return (
+    <SearchbarWrapper>
+      <SearchForm onSubmit={handleSubmit}>
+        <FormBtn type="submit">
+          <Span>
+            <BiSearch size="20px" color="black" />
+          </Span>
+        </FormBtn>
 
-          <Input
-            type="text"
-            autocomplete="off"
-            autoFocus
-            value={this.state.search}
-            placeholder="Search images and photos"
-            onChange={this.handleInput}
-          />
-        </SearchForm>
-      </SearchbarWrapper>
-    );
-  }
-}
+        <Input
+          type="text"
+          autocomplete="off"
+          autoFocus
+          value={search}
+          placeholder="Search images and photos"
+          onChange={handleInput}
+        />
+      </SearchForm>
+    </SearchbarWrapper>
+  );
+};
 
 export default Searchbar;

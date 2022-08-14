@@ -1,10 +1,11 @@
-import { ThreeCircles } from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 
 const Loader = () => {
   return (
-    <ThreeCircles
+    <ThreeDots
       wrapperStyle={{ justifyContent: 'center' }}
       height="150"
+      width="150"
       color="#B46AEC"
     />
   );
